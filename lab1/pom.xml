@@ -42,19 +42,44 @@
         <version>4.2.2</version>
     </dependency>
 </dependencies>
-
-
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <mainClass>com.example.graphapp.ui.MainFrame</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <!-- 用于 mvn exec:java 运行项目 -->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <configuration>
+                <mainClass>com.example.graphapp.ui.MainFrame</mainClass>
+            </configuration>
+        </plugin>
+
+        <!-- 用于生成可运行的胖JAR（带依赖） -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.6.0</version>
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>com.example.graphapp.ui.MainFrame</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 </project>
 

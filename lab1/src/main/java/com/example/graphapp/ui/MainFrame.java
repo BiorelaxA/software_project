@@ -3,6 +3,7 @@ package com.example.graphapp.ui;
 import com.example.graphapp.input.GraphBuilder;
 import com.example.graphapp.algo.ShortestPathFinder;
 import com.example.graphapp.algo.DijkstraShortestPathService;
+import com.example.graphapp.bridge.findbridge;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
@@ -30,28 +31,57 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("GraphVisualizer");
+
+        // 原有组件
         JButton loadBtn = new JButton("加载文件");
         JButton pathBtn = new JButton("最短路径");
         JTextField srcField = new JTextField(10);
         JTextField dstField = new JTextField(10);
 
-        JPanel panel = new JPanel();
-        panel.add(loadBtn);
-        panel.add(new JLabel("源:"));
-        panel.add(srcField);
-        panel.add(new JLabel("终:"));
-        panel.add(dstField);
-        panel.add(pathBtn);
+        // 新增组件
+        JButton findBridgeBtn = new JButton("寻找连接字");
+        JTextField word1Field = new JTextField(10);
+        JTextField word2Field = new JTextField(10);
 
+        // 顶部面板，使用 BoxLayout 垂直排列两个子面板
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+
+        // 第一个子面板：加载文件和最短路径
+        JPanel panel1 = new JPanel();
+        panel1.add(loadBtn);
+        panel1.add(new JLabel("源:"));
+        panel1.add(srcField);
+        panel1.add(new JLabel("终:"));
+        panel1.add(dstField);
+        panel1.add(pathBtn);
+
+        // 第二个子面板：寻找连接字
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel("词1:"));
+        panel2.add(word1Field);
+        panel2.add(new JLabel("词2:"));
+        panel2.add(word2Field);
+        panel2.add(findBridgeBtn);
+
+        // 将两个子面板添加到顶部面板
+        topPanel.add(panel1);
+        topPanel.add(panel2);
+
+        // 设置布局
+        getContentPane().add(topPanel, BorderLayout.NORTH);
+        getContentPane().add(graphComponent, BorderLayout.CENTER);
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // 按钮事件监听器
         loadBtn.addActionListener(e -> chooseAndLoad());
         pathBtn.addActionListener(e -> showShortestPath(
                 srcField.getText().trim().toLowerCase(),
                 dstField.getText().trim().toLowerCase()));
-
-        getContentPane().add(panel, BorderLayout.NORTH);
-        getContentPane().add(graphComponent, BorderLayout.CENTER);
-        setSize(800, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        findBridgeBtn.addActionListener(e -> findbridge(
+                word1Field.getText().trim().toLowerCase(),
+                word2Field.getText().trim().toLowerCase()));
     }
 
     private void chooseAndLoad() {
@@ -117,6 +147,39 @@ public class MainFrame extends JFrame {
             if (cell != null) {
                 graphUI.setCellStyle("strokeColor=red", new Object[] { cell });
             }
+        }
+    }
+
+    private void findbridge(String word1, String word2) {
+        if (graphModel == null) {
+            JOptionPane.showMessageDialog(this, "请先加载图");
+            return;
+        }
+        findbridge f = new findbridge();
+        List<String> res = f.findBridgeWords(graphModel, word1, word2);
+        if (!graphModel.containsVertex(word1) || !graphModel.containsVertex(word2)) {
+            JOptionPane.showMessageDialog(this, "图中不存在 " + word1 + " 或 " + word2 + "！");
+        } else if (res.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "从 " + word1 + " 到 " + word2 + " 没有桥接词！");
+        } else {
+            JOptionPane.showMessageDialog(this, "从 " + word1 + " 到 " + word2 + " 的桥接词有: " + String.join(", ", res));
+            highlightBridgeWords(res);
+        }
+    }
+
+    private void highlightBridgeWords(List<String> bridgeWords) {
+        Object parent = graphUI.getDefaultParent();
+        graphUI.getModel().beginUpdate();
+        try {
+            for (String word : bridgeWords) {
+                for (Object cell : graphUI.getChildVertices(parent)) {
+                    if (word.equals(graphUI.getModel().getValue(cell))) {
+                        graphUI.setCellStyle("fillColor=red", new Object[] { cell });
+                    }
+                }
+            }
+        } finally {
+            graphUI.getModel().endUpdate();
         }
     }
 
