@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,8 @@ public class MainFrame extends JFrame {
         JButton findBridgeBtn = new JButton("寻找连接字");
         JTextField word1Field = new JTextField(10);
         JTextField word2Field = new JTextField(10);
+        JTextArea newTextArea = new JTextArea(5, 60); // 新增：原始文本输入
+        JTextArea resultTextArea = new JTextArea(5, 60); // 新增：结果展示
 
         // 顶部面板，使用 BoxLayout 垂直排列两个子面板
         JPanel topPanel = new JPanel();
@@ -73,6 +76,27 @@ public class MainFrame extends JFrame {
         getContentPane().add(graphComponent, BorderLayout.CENTER);
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        resultTextArea.setEditable(false);
+        JButton insertBtn = new JButton("插入桥接词");
+
+        JPanel bottomPanel = new JPanel(new BorderLayout(5, 5));
+        bottomPanel.setBorder(BorderFactory.createTitledBorder("桥接词插入"));
+        bottomPanel.add(new JScrollPane(newTextArea), BorderLayout.NORTH);
+        bottomPanel.add(insertBtn, BorderLayout.CENTER);
+        bottomPanel.add(new JScrollPane(resultTextArea), BorderLayout.SOUTH);
+
+        getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+
+        // —— 按钮监听 —— //
+        insertBtn.addActionListener(evt -> {
+            String input = newTextArea.getText().trim().toLowerCase();
+            if (graphModel == null) {
+                JOptionPane.showMessageDialog(this, "请先加载图！");
+                return;
+            }
+            String out = insertBridgeWords(input);
+            resultTextArea.setText(out);
+        });
 
         // 按钮事件监听器
         loadBtn.addActionListener(e -> chooseAndLoad());
@@ -181,6 +205,50 @@ public class MainFrame extends JFrame {
         } finally {
             graphUI.getModel().endUpdate();
         }
+    }
+
+    /**
+     * 对输入文本中每对相邻单词尝试插入桥接词。
+     * 如 “w1 w2” 且存在桥接词 [b1, b2]，
+     * 则输出 “w1 b1 b2 w2”，否则保持 “w1 w2”。
+     */
+    private String insertBridgeWords(String text) {
+        if (text.isEmpty())
+            return "";
+
+        String[] words = text.split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            sb.append(words[i]);
+            // 若不是最后一个词，处理与下词之间的桥接
+            if (i < words.length - 1) {
+                String w1 = words[i], w2 = words[i + 1];
+                List<String> bridges = findBridgeWords(w1, w2);
+                if (!bridges.isEmpty()) {
+                    // 插入所有桥接词
+                    for (String b : bridges) {
+                        sb.append(" ").append(b);
+                    }
+                }
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
+
+    /** 复用前面定义的桥接词查找，直接对 graphModel 操作 */
+    private List<String> findBridgeWords(String w1, String w2) {
+        List<String> res = new ArrayList<>();
+        if (!graphModel.containsVertex(w1) || !graphModel.containsVertex(w2)) {
+            return res;
+        }
+        for (DefaultWeightedEdge e : graphModel.outgoingEdgesOf(w1)) {
+            String mid = graphModel.getEdgeTarget(e);
+            if (graphModel.containsEdge(mid, w2)) {
+                res.add(mid);
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
