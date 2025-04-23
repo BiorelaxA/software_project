@@ -12,10 +12,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -33,6 +39,8 @@ public class MainFrame extends JFrame {
 
     private JTextArea newTextArea;
     private JTextArea resultTextArea;
+    private SwingWorker<Void, String> walkWorker;
+    private JButton walkBtn;
 
     public MainFrame() {
         super("GraphVisualizer");
@@ -62,6 +70,18 @@ public class MainFrame extends JFrame {
         panel1.add(findBridgeBtn);
         panel1.add(prk);
         topPanel.add(panel1);
+        walkBtn = new JButton("随机游走");
+        panel1.add(walkBtn); // 将它加入到你已有的 panel1 或者其它合适的容器中
+
+        // —— 监听器 —— //
+        walkBtn.addActionListener(e -> {
+            if (walkWorker == null || walkWorker.isDone()) {
+                startRandomWalk();
+            } else {
+                // 正在运行，点击则取消
+                walkWorker.cancel(true);
+            }
+        });
 
         // 中部图形
         getContentPane().add(topPanel, BorderLayout.NORTH);
@@ -143,6 +163,93 @@ public class MainFrame extends JFrame {
         }
     }
 
+    private void saveWalkToFile(List<String> visitedNodes) {
+        // 弹出保存对话框
+        SwingUtilities.invokeLater(() -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("保存随机游走结果为文本文件");
+            if (chooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+                File f = chooser.getSelectedFile();
+                try (PrintWriter out = new PrintWriter(f)) {
+                    for (String node : visitedNodes) {
+                        out.println(node);
+                    }
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(MainFrame.this, "写入失败：" + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void startRandomWalk() {
+        if (graphModel == null) {
+            JOptionPane.showMessageDialog(this, "请先加载图");
+            return;
+        }
+        // 重置状态
+        resultTextArea.setText("");
+        walkBtn.setText("停止游走");
+
+        walkWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                Random rnd = new Random();
+                Set<DefaultWeightedEdge> seenEdges = new HashSet<>();
+                List<String> visited = new ArrayList<>();
+
+                // 1. 随机选起点
+                List<String> verts = new ArrayList<>(graphModel.vertexSet());
+                String current = verts.get(rnd.nextInt(verts.size()));
+                visited.add(current);
+                publish(current);
+
+                // 2. 随机游走
+                while (!isCancelled()) {
+                    Set<DefaultWeightedEdge> outs = graphModel.outgoingEdgesOf(current);
+                    if (outs.isEmpty()) {
+                        break; // 无出边
+                    }
+                    // 随机选一条出边
+                    List<DefaultWeightedEdge> edgeList = new ArrayList<>(outs);
+                    DefaultWeightedEdge e = edgeList.get(rnd.nextInt(edgeList.size()));
+                    // 遇到已访问过的边则停止
+                    if (!seenEdges.add(e)) {
+                        break;
+                    }
+                    // 记录下一个节点
+                    String next = graphModel.getEdgeTarget(e);
+                    visited.add(next);
+                    publish(next);
+                    current = next;
+                    Thread.sleep(200); // 让 UI 有缓冲，也能响应取消
+                }
+                // 3. 写入文件
+                saveWalkToFile(visited);
+                return null;
+            }
+
+            @Override
+            protected void process(List<String> chunks) {
+                // 将每批 publish 的节点追加到文本区
+                for (String node : chunks) {
+                    resultTextArea.append(node + "\n");
+                }
+            }
+
+            @Override
+            protected void done() {
+                walkBtn.setText("随机游走");
+                if (isCancelled()) {
+                    JOptionPane.showMessageDialog(MainFrame.this, "随机游走已停止");
+                } else {
+                    JOptionPane.showMessageDialog(MainFrame.this, "随机游走完成，结果已保存");
+                }
+            }
+        };
+
+        walkWorker.execute();
+    }
+
     private void showShortestPath(String src, String dst) {
         if (graphModel == null) {
             JOptionPane.showMessageDialog(this, "请先加载图");
@@ -172,30 +279,61 @@ public class MainFrame extends JFrame {
     }
 
     private List<String> findBridgeWords(String w1, String w2) {
-        List<String> list = new ArrayList<>();
+        // 先检查两个单词都在图中
+        if (graphModel == null
+                || !graphModel.containsVertex(w1)
+                || !graphModel.containsVertex(w2)) {
+            return Collections.emptyList();
+        }
+
+        List<String> bridges = new ArrayList<>();
+        // 遍历 w1 的所有出边
         for (DefaultWeightedEdge e : graphModel.outgoingEdgesOf(w1)) {
             String mid = graphModel.getEdgeTarget(e);
-            if (graphModel.containsEdge(mid, w2))
-                list.add(mid);
-        }
-        return list;
-    }
-
-    private String insertBridgeWords(String text) {
-        if (text.isEmpty())
-            return "";
-        String[] ws = text.split("\\s+");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < ws.length; i++) {
-            sb.append(ws[i]);
-            if (i < ws.length - 1) {
-                List<String> b = findBridgeWords(ws[i], ws[i + 1]);
-                for (String t : b)
-                    sb.append(" ").append(t);
-                sb.append(" ");
+            // 如果存在 mid -> w2 的边，则 mid 是桥接词
+            if (graphModel.containsEdge(mid, w2)) {
+                bridges.add(mid);
             }
         }
-        return sb.toString();
+        return bridges;
+    }
+
+    /**
+     * 对输入文本中每对相邻单词尝试插入桥接词：
+     * — 如果 findBridgeWords 返回非空，则在两词之间依次插入所有桥接词；
+     * — 如果返回空，则仅在两词之间保留一个空格，不插入额外内容。
+     *
+     * @param text 用户输入的原始文本（已统一为小写并按空白切分）
+     * @return 插入桥接词后的新文本
+     */
+    private String insertBridgeWords(String text) {
+        if (text == null || text.isEmpty()) {
+            return "";
+        }
+        String[] ws = text.trim().split("\\s+");
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < ws.length; i++) {
+            sb.append(ws[i]);
+            // 只要不是最后一个词，就处理 ws[i] 与 ws[i+1]
+            if (i < ws.length - 1) {
+                String next = ws[i + 1];
+                // 先检查节点是否都在图中
+                List<String> bridges = findBridgeWords(ws[i], next);
+                if (!bridges.isEmpty()) {
+                    // 插入所有桥接词
+                    for (String b : bridges) {
+                        sb.append(" ").append(b);
+                    }
+                }
+                // 再加上原始的下一个词与空格
+                sb.append(" ").append(next).append(" ");
+                // 跳过下一个词，因为已经手动输出
+                i++;
+            }
+        }
+
+        return sb.toString().trim();
     }
 
     private void showPageRank() {

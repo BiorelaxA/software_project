@@ -1,5 +1,6 @@
 com\example\graphapp\bridge\findbridge.class
 com\example\graphapp\algo\DijkstraShortestPathService.class
+com\example\graphapp\ui\MainFrame$1.class
 module-info.class
 com\example\graphapp\algo\ShortestPathFinder.class
 com\example\graphapp\algo\PageRankService.class
