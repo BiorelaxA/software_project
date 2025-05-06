@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import guru.nidi.graphviz.engine.Graphviz;
@@ -286,7 +287,10 @@ public class MainFrame extends JFrame {
                         "不支持的输出格式: " + ext + ". 请使用 png/svg/svg_standalone/dot/plain/json 等格式");
         }
         // 渲染并写入文件
-        Graphviz.useEngine(new GraphvizCmdLineEngine());
+        // Graphviz.useEngine(new GraphvizCmdLineEngine());
+        // new GraphvizCmdLineEngine().timeout(10, TimeUnit.MINUTES)
+        Graphviz.useEngine(
+                new GraphvizCmdLineEngine().timeout(10, TimeUnit.MINUTES));
         Graphviz.fromString(dot)
                 .render(format)
                 .toFile(outFile);
