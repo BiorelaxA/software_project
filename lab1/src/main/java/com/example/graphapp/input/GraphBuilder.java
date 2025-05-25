@@ -13,6 +13,11 @@ import java.io.IOException;
 /**
  * 构建有向带权图：节点为单词，边的权重为相邻出现次数
  */
+/**
+ * @see GraphBuilder
+ * @author BiorelaxA
+ * @version 24.1
+ */
 public class GraphBuilder {
     public Graph<String, DefaultWeightedEdge> buildGraph(File file) throws IOException {
         Graph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<>(DefaultWeightedEdge.class);
