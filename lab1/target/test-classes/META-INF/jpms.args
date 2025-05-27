@@ -1,4 +1,0 @@
---patch-module
-com.example.graphapp=_
---add-reads
-com.example.graphapp=ALL-UNNAMED
