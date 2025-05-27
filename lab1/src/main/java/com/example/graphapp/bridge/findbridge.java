@@ -6,7 +6,7 @@ import java.util.List;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-public class findbridge {
+public class FindBridge {
     public List<String> findBridgeWords(Graph<String, DefaultWeightedEdge> graph, String word1, String word2) {
         List<String> bridgeWords = new ArrayList<>();
 

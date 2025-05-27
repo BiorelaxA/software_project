@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.graphapp.bridge.FindBridgeTest" time="0.079" tests="8" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="24"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.class.path" value="E:\COLLEGE\homework\software\software_project\lab1\target\test-classes;C:\Users\ABC\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\ABC\.m2\repository\org\webjars\npm\viz.js-graphviz-java\2.1.3\viz.js-graphviz-java-2.1.3.jar;C:\Users\ABC\.m2\repository\guru\nidi\com\kitfox\svgSalamander\1.1.3\svgSalamander-1.1.3.jar;C:\Users\ABC\.m2\repository\net\arnx\nashorn-promise\0.1.1\nashorn-promise-0.1.1.jar;C:\Users\ABC\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\ABC\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\ABC\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\ABC\.m2\repository\org\slf4j\jul-to-slf4j\1.7.30\jul-to-slf4j-1.7.30.jar;C:\Users\ABC\.m2\repository\guru\nidi\com\eclipsesource\j2v8\j2v8_win32_x86_64\4.6.0\j2v8_win32_x86_64-4.6.0.jar;C:\Users\ABC\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\ABC\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\ABC\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\ABC\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\ABC\.m2\repository\org\junit\vintage\junit-vintage-engine\5.9.2\junit-vintage-engine-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\ABC\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ABC\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-swing-junit\3.17.1\assertj-swing-junit-3.17.1.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-swing\3.17.1\assertj-swing-3.17.1.jar;C:\Users\ABC\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\ABC\.m2\repository\org\easytesting\fest-reflect\1.4.1\fest-reflect-1.4.1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="24"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.boot.library.path" value="E:\jdk\openjdk-24.0.1_windows-x64_bin\jdk-24.0.1\bin"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\ABC\AppData\Local\Temp\surefire1232818419917739440 2025-05-27T20-54-04_889-jvmRun1 surefire-20250527205405295_1tmp surefire_0-20250527205405295_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="E:\COLLEGE\homework\software\software_project\lab1\target\test-classes;C:\Users\ABC\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\ABC\.m2\repository\org\webjars\npm\viz.js-graphviz-java\2.1.3\viz.js-graphviz-java-2.1.3.jar;C:\Users\ABC\.m2\repository\guru\nidi\com\kitfox\svgSalamander\1.1.3\svgSalamander-1.1.3.jar;C:\Users\ABC\.m2\repository\net\arnx\nashorn-promise\0.1.1\nashorn-promise-0.1.1.jar;C:\Users\ABC\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\ABC\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\ABC\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\ABC\.m2\repository\org\slf4j\jul-to-slf4j\1.7.30\jul-to-slf4j-1.7.30.jar;C:\Users\ABC\.m2\repository\guru\nidi\com\eclipsesource\j2v8\j2v8_win32_x86_64\4.6.0\j2v8_win32_x86_64-4.6.0.jar;C:\Users\ABC\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\ABC\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\ABC\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\ABC\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\ABC\.m2\repository\org\junit\vintage\junit-vintage-engine\5.9.2\junit-vintage-engine-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\ABC\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ABC\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-swing-junit\3.17.1\assertj-swing-junit-3.17.1.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-swing\3.17.1\assertj-swing-3.17.1.jar;C:\Users\ABC\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\ABC\.m2\repository\org\easytesting\fest-reflect\1.4.1\fest-reflect-1.4.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\ABC"/>
+    <property name="user.language" value="zh"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="jdk.module.path" value="E:\COLLEGE\homework\software\software_project\lab1\target\classes;C:\Users\ABC\.m2\repository\org\jgrapht\jgrapht-core\1.5.1\jgrapht-core-1.5.1.jar;C:\Users\ABC\.m2\repository\org\jheaps\jheaps\0.13\jheaps-0.13.jar;C:\Users\ABC\.m2\repository\org\jgrapht\jgrapht-io\1.5.2\jgrapht-io-1.5.2.jar;C:\Users\ABC\.m2\repository\org\antlr\antlr4-runtime\4.12.0\antlr4-runtime-4.12.0.jar;C:\Users\ABC\.m2\repository\org\apache\commons\commons-text\1.10.0\commons-text-1.10.0.jar;C:\Users\ABC\.m2\repository\com\github\vlsi\mxgraph\jgraphx\4.2.2\jgraphx-4.2.2.jar;C:\Users\ABC\.m2\repository\guru\nidi\graphviz-java\0.18.1\graphviz-java-0.18.1.jar"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="E:\jdk\openjdk-24.0.1_windows-x64_bin\jdk-24.0.1"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="E:\COLLEGE\homework\software\software_project\lab1"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\ABC\.m2\repository\org\apache\maven\surefire\surefire-booter\3.2.5\surefire-booter-3.2.5.jar;C:\Users\ABC\.m2\repository\org\apache\maven\surefire\surefire-api\3.2.5\surefire-api-3.2.5.jar;C:\Users\ABC\.m2\repository\org\apache\maven\surefire\surefire-logger-api\3.2.5\surefire-logger-api-3.2.5.jar;C:\Users\ABC\.m2\repository\org\apache\maven\surefire\surefire-shared-utils\3.2.5\surefire-shared-utils-3.2.5.jar;C:\Users\ABC\.m2\repository\org\apache\maven\surefire\surefire-extensions-spi\3.2.5\surefire-extensions-spi-3.2.5.jar;E:\COLLEGE\homework\software\software_project\lab1\target\test-classes;C:\Users\ABC\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\ABC\.m2\repository\org\webjars\npm\viz.js-graphviz-java\2.1.3\viz.js-graphviz-java-2.1.3.jar;C:\Users\ABC\.m2\repository\guru\nidi\com\kitfox\svgSalamander\1.1.3\svgSalamander-1.1.3.jar;C:\Users\ABC\.m2\repository\net\arnx\nashorn-promise\0.1.1\nashorn-promise-0.1.1.jar;C:\Users\ABC\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\ABC\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\ABC\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\ABC\.m2\repository\org\slf4j\jul-to-slf4j\1.7.30\jul-to-slf4j-1.7.30.jar;C:\Users\ABC\.m2\repository\guru\nidi\com\eclipsesource\j2v8\j2v8_win32_x86_64\4.6.0\j2v8_win32_x86_64-4.6.0.jar;C:\Users\ABC\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\ABC\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\ABC\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\ABC\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\ABC\.m2\repository\org\junit\vintage\junit-vintage-engine\5.9.2\junit-vintage-engine-5.9.2.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\ABC\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\ABC\.m2\repository\net\bytebuddy\byte-buddy\1.12.21\byte-buddy-1.12.21.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-swing-junit\3.17.1\assertj-swing-junit-3.17.1.jar;C:\Users\ABC\.m2\repository\org\assertj\assertj-swing\3.17.1\assertj-swing-3.17.1.jar;C:\Users\ABC\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\ABC\.m2\repository\org\easytesting\fest-reflect\1.4.1\fest-reflect-1.4.1.jar;C:\Users\ABC\.m2\repository\org\apache\maven\surefire\surefire-junit-platform\3.2.5\surefire-junit-platform-3.2.5.jar;C:\Users\ABC\.m2\repository\org\apache\maven\surefire\common-java5\3.2.5\common-java5-3.2.5.jar;C:\Users\ABC\.m2\repository\org\junit\platform\junit-platform-launcher\1.9.2\junit-platform-launcher-1.9.2.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="24.0.1+9-30"/>
+    <property name="user.name" value="ABC"/>
+    <property name="stdout.encoding" value="GBK"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\ABC\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\ABC\AppData\Local\Temp\"/>
+    <property name="java.version" value="24.0.1"/>
+    <property name="user.dir" value="E:\COLLEGE\homework\software\software_project\lab1"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="GBK"/>
+    <property name="java.library.path" value="E:\jdk\openjdk-24.0.1_windows-x64_bin\jdk-24.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\ZenTao\bin\sliksvn;D:\ZenTao\zbox\nssm\win64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\libnvvp;E:\VMware\bin\;C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;D:\visual2019\VC\Tools\MSVC\14.29.30133\bin\Hostx86\x86;E:\apache-tomcat-10.1.11\bin;E:\apache-maven-3.9.4\bin;E:\texlive\2023\bin\windows;E:\programing\mingw64\bin;E:\NodeJs\Nodejs;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;E:\NodeJs\node_global;C:\Program Files\NVIDIA Co;E:\programing\php\php-8.3.12-nts-Win32-vs16-x64;C:\MinGW\bin;C:\Program Files\Docker\Docker\resources\bin;E:\vivado\Xilinx_Vivado_2019.2_1106_2127\Vivado\2019.2\bin;E:\usb-laucher\Bluetooth Command Line Tools\bin;E:\串口调试工具\串口调试助手\超级终端\PuTTY\64\;E:\programing\maven-mvnd-1.0.2-windows-amd64\mvn\bin;E:\jdk\openjdk-24.0.1_windows-x64_bin\jdk-24.0.1\bin;E:\jdk\openjdk-24.0.1_windows-x64_bin\jdk-24.0.1\jre\bin;E:\Graphviz\bin;E:\programing\Rust\.cargo\bin;E:\programing\anaconda3;E:\programing\anaconda3\Library\mingw-w64\bin;E:\programing\anaconda3\Library\usr\bin;E:\programing\anaconda3\Library\bin;E:\programing\anaconda3\Scripts;C:\Users\ABC\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\ABC\AppData\Local\Programs\Python\Python311\;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;C:\Users\ABC\AppData\Local\Microsoft\WindowsApps；C:\Users\ABC\Desktop\code block\CodeBlocks\MinGW;USERPROFILE%\.dotnet\tools;D:\MinGW\bin;D:\visual2019\VC\Tools\MSVC\14.29.30133\bin\Hostx86\x86\cl.exe;E:\apache-maven-3.9.4in;%DevEco Studio%;E:\NodeJs\Nodejs;E:\Program Files\Mysql;E:\Program Files\Mysql\bin;E:\Grapheditor\Graphviz\bin;E:\NodeJs\node_global\cnpm;E:\programing\Rust\.cargo;E:\programing\Rust\.rustup;E:\programing\anaconda3\envs\mindspore;E:\programing\go_code\bin;C:\Users\ABC\AppData\Local\GitHubDesktop\bin;E:\GitHubDesktop\bin;D:\vscode\Microsoft VS Code\bin;;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="stderr.encoding" value="GBK"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="24.0.1+9-30"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="68.0"/>
+  </properties>
+  <testcase name="tc4_startMissing" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.039">
+    <system-out><![CDATA[No x or c in the graph!
+]]></system-out>
+  </testcase>
+  <testcase name="tc5_endMissing" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.001">
+    <system-out><![CDATA[No a or y in the graph!
+]]></system-out>
+  </testcase>
+  <testcase name="tc3_noBridge" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.002">
+    <system-out><![CDATA[No bridge words from b to a!
+]]></system-out>
+  </testcase>
+  <testcase name="tc8_selfLoop" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.002">
+    <system-out><![CDATA[The bridge words from a to a are: a.
+]]></system-out>
+  </testcase>
+  <testcase name="tc1_singleBridge" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.001">
+    <system-out><![CDATA[The bridge words from a to c are: b.
+]]></system-out>
+  </testcase>
+  <testcase name="tc2_multipleBridges" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.002">
+    <system-out><![CDATA[The bridge words from a to c are: b, d.
+]]></system-out>
+  </testcase>
+  <testcase name="tc6_bothMissing" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.002">
+    <system-out><![CDATA[No x or y in the graph!
+]]></system-out>
+  </testcase>
+  <testcase name="tc7_emptyGraph" classname="com.example.graphapp.bridge.FindBridgeTest" time="0.001">
+    <system-out><![CDATA[No a or b in the graph!
+]]></system-out>
+  </testcase>
+</testsuite>

@@ -46,17 +46,48 @@
         <artifactId>jgraphx</artifactId>
         <version>4.2.2</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.jgrapht/jgrapht-io -->
-    <dependency>
-        <groupId>org.jgrapht</groupId>
-        <artifactId>jgrapht-io</artifactId>
-        <version>1.5.2</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/guru.nidi/graphviz-java -->
     <dependency>
         <groupId>guru.nidi</groupId>
         <artifactId>graphviz-java</artifactId>
         <version>0.18.1</version>
+    </dependency>
+        <!-- JUnit Jupiter (JUnit 5) -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.9.2</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- 为了跑 AssertJ-Swing 的 @RunWith(GUITestRunner.class)，需要 JUnit4  -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- 让 Surefire 同时支持 JUnit4 和 JUnit5 -->
+    <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>5.9.2</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- AssertJ Core（断言库） -->
+    <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>3.24.2</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- AssertJ Swing（GUI 自动化） -->
+    <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-swing-junit</artifactId>
+        <version>3.17.1</version>
+        <scope>test</scope>
     </dependency>
 </dependencies>
     <build>
@@ -95,6 +126,11 @@
                     </goals>
                 </execution>
             </executions>
+        </plugin>
+        <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>4.9.3.0</version>
         </plugin>
     </plugins>
 </build>

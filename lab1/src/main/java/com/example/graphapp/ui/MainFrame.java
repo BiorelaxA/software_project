@@ -142,6 +142,21 @@ public class MainFrame extends JFrame {
         bridgeBtn.addActionListener(e -> showBridge());
         walkBtn.addActionListener(e -> toggleWalk());
         prBtn.addActionListener(e -> computePageRank());
+        // 黑盒测试命名
+        srcField.setName("srcField");
+        dstField.setName("dstField");
+        bridgeSrcField.setName("bridgeSrcField");
+        bridgeDstField.setName("bridgeDstField");
+        outputArea.setName("outputArea");
+        insertInputArea.setName("insertInputArea");
+        insertResultArea.setName("insertResultArea");
+
+        pathBtn.setName("最短路径");
+        bridgeBtn.setName("寻找桥接词");
+        loadBtn.setName("加载图文件");
+        walkBtn.setName("walkBtn");
+        prBtn.setName("prBtn");
+        insertBtn.setName("插入桥接词");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
