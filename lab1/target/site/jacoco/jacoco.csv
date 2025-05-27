@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+graphapp,com.example.graphapp.bridge,findbridge,70,0,14,0,14,0,9,0,2,0
+graphapp,com.example.graphapp.ui,MainFrame,666,399,66,1,160,86,63,4,24,4
+graphapp,com.example.graphapp.ui,MainFrame.new SwingWorker() {...},4,134,2,8,2,28,2,7,0,4
+graphapp,com.example.graphapp.input,GraphBuilder,85,0,6,0,17,0,5,0,2,0
+graphapp,com.example.graphapp.algo,PageRankService,193,0,20,0,37,0,12,0,2,0
+graphapp,com.example.graphapp.algo,DijkstraShortestPathService,6,3,0,0,2,1,1,1,1,1

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>findbridge.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">graphapp</a> &gt; <a href="index.source.html" class="el_package">com.example.graphapp.bridge</a> &gt; <span class="el_source">findbridge.java</span></div><h1>findbridge.java</h1><pre class="source lang-java linenums">package com.example.graphapp.bridge;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultWeightedEdge;
+
+<span class="nc" id="L9">public class findbridge {</span>
+    public List&lt;String&gt; findBridgeWords(Graph&lt;String, DefaultWeightedEdge&gt; graph, String word1, String word2) {
+<span class="nc" id="L11">        List&lt;String&gt; bridgeWords = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L13" title="All 4 branches missed.">        if (!graph.containsVertex(word1) || !graph.containsVertex(word2)) {</span>
+            // System.out.println(&quot;No &quot; + word1 + &quot; or &quot; + word2 + &quot; in the graph!&quot;);
+<span class="nc" id="L15">            return bridgeWords;</span>
+        }
+
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        for (DefaultWeightedEdge edgeFromWord1 : graph.outgoingEdgesOf(word1)) {</span>
+<span class="nc" id="L19">            String intermediate = graph.getEdgeTarget(edgeFromWord1);</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            if (graph.containsEdge(intermediate, word2)) {</span>
+<span class="nc" id="L21">                bridgeWords.add(intermediate);</span>
+            }
+<span class="nc" id="L23">        }</span>
+
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (bridgeWords.isEmpty()) {</span>
+            // System.out.println(&quot;No bridge words from &quot; + word1 + &quot; to &quot; + word2 + &quot;!&quot;);
+        } else {
+            // System.out.print(&quot;The bridge words from &quot; + word1 + &quot; to &quot; + word2 + &quot; are:
+            // &quot;);
+<span class="nc bnc" id="L30" title="All 2 branches missed.">            for (int i = 0; i &lt; bridgeWords.size(); i++) {</span>
+<span class="nc" id="L31">                System.out.print(bridgeWords.get(i));</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                if (i &lt; bridgeWords.size() - 1) {</span>
+                    // System.out.print(&quot;, &quot;);
+                }
+            }
+            // System.out.println(&quot;.&quot;);
+        }
+
+<span class="nc" id="L39">        return bridgeWords;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
