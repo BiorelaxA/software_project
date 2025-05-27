@@ -382,7 +382,7 @@ public class MainFrame extends JFrame {
             walkWorker.cancel(true);
     }
 
-    private void startWalk() {
+    public void startWalk() {
         if (graphModel == null) {
             JOptionPane.showMessageDialog(this, "请先加载图");
             return;
